@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Souza Cheats - APK External Edition</title>
+    <title>Souza Cheats - EXTERNAL EDITION</title>
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     
     <style>
         :root {
-            --bg-color: #0a0a0c;
-            --panel-bg: #121216;
-            --accent-color: #ff4757;
-            --text-main: #f0f0f0;
-            --text-dim: #a0a0a0;
-            --border-color: #2a2a32;
+            --bg-color: #08080a;
+            --panel-bg: #0f0f13;
+            --accent-color: #ff0000;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --border-color: #1f1f26;
             --code-bg: #000000;
-            --info-bg: #1e1e24;
+            --info-bg: #14141a;
         }
 
         body {
@@ -25,7 +25,7 @@
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Consolas', 'Courier New', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,29 +34,31 @@
         }
 
         .panel {
-            width: 1050px;
-            height: 750px;
+            width: 1150px;
+            height: 850px;
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 4px;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            box-shadow: 0 0 50px rgba(255,0,0,0.15);
         }
 
         .header {
-            padding: 20px 30px;
+            padding: 15px 25px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: linear-gradient(90deg, #1a0000 0%, #0f0f13 100%);
         }
 
         .header-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             color: var(--accent-color);
-            letter-spacing: 1px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .main {
@@ -68,143 +70,154 @@
         .sidebar {
             width: 220px;
             border-right: 1px solid var(--border-color);
-            padding: 20px 0;
+            padding: 10px 0;
+            background: #0a0a0e;
+            overflow-y: auto;
         }
 
         .nav-item {
-            padding: 15px 30px;
-            font-size: 13px;
+            padding: 12px 20px;
+            font-size: 11px;
             color: var(--text-dim);
             cursor: pointer;
-            transition: 0.3s;
-            border-left: 4px solid transparent;
+            transition: 0.2s;
+            border-left: 2px solid transparent;
+            margin-bottom: 2px;
+            text-transform: uppercase;
         }
 
+        .nav-item:hover { color: #fff; background: #15151a; }
+
         .nav-item.active {
-            background: rgba(255, 71, 87, 0.1);
+            background: #1a1a24;
             color: var(--accent-color);
             border-left-color: var(--accent-color);
         }
 
         .content {
             flex: 1;
-            padding: 25px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             overflow-y: auto;
         }
 
         .section {
-            background: rgba(255,255,255,0.02);
-            padding: 20px;
-            border-radius: 12px;
+            background: #121218;
+            padding: 15px;
             border: 1px solid var(--border-color);
         }
 
         .section-title {
-            font-size: 12px;
-            color: var(--text-dim);
+            font-size: 11px;
+            color: var(--accent-color);
             text-transform: uppercase;
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
         }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 15px;
         }
 
         .control-item {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .label-row {
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
+            font-size: 12px;
         }
 
-        .value { color: var(--accent-color); font-weight: bold; }
+        .value { color: var(--accent-color); }
 
         .display-area {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 15px;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 10px;
             flex: 1;
-            min-height: 250px;
+            min-height: 300px;
         }
 
         .code-box, .info-box {
             background: var(--code-bg);
-            border-radius: 8px;
             padding: 15px;
             border: 1px solid var(--border-color);
-            font-size: 12px;
+            font-size: 11px;
             overflow-y: auto;
+            position: relative;
         }
 
-        .info-box {
-            background: var(--info-bg);
-            color: #ccc;
-            line-height: 1.6;
-        }
+        .info-box { background: var(--info-bg); color: #aaa; line-height: 1.5; }
 
-        .info-title {
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
-        }
+        .info-title { color: var(--accent-color); font-weight: bold; margin-bottom: 8px; display: block; }
 
-        pre { margin: 0; color: #dcdcdc; font-family: 'Consolas', monospace; }
-        .keyword { color: #c678dd; }
-        .function { color: #61afef; }
-        .number { color: #d19a66; }
-        .comment { color: #5c6370; font-style: italic; }
-        .highlight { background: rgba(255, 71, 87, 0.15); border-left: 2px solid var(--accent-color); padding-left: 5px; }
+        pre { margin: 0; color: #00ff00; line-height: 1.4; }
+        .keyword { color: #ff00ff; }
+        .function { color: #00ffff; }
+        .number { color: #ffff00; }
+        .comment { color: #555; }
 
         input[type=range] { width: 100%; accent-color: var(--accent-color); }
-        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .switch { position: relative; display: inline-block; width: 34px; height: 18px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 20px; }
-        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: var(--accent-color); }
-        input:checked + .slider:before { transform: translateX(20px); }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #222; transition: .3s; }
+        .slider:before { position: absolute; content: ""; height: 12px; width: 12px; left: 3px; bottom: 3px; background-color: #555; transition: .3s; }
+        input:checked + .slider { background-color: #400; }
+        input:checked + .slider:before { transform: translateX(16px); background-color: var(--accent-color); }
 
         .status-bar {
-            padding: 10px 30px;
+            padding: 8px 25px;
             background: #000;
             border-top: 1px solid var(--border-color);
-            font-size: 11px;
+            font-size: 10px;
             display: flex;
             justify-content: space-between;
-            color: var(--text-dim);
+            color: #444;
         }
 
         .btn-sync {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 4px;
+            background: #200;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 6px 15px;
+            font-size: 11px;
             cursor: pointer;
-            font-weight: bold;
+            text-transform: uppercase;
             transition: 0.3s;
         }
 
-        .btn-sync:hover { opacity: 0.8; }
+        .btn-sync:hover { background: var(--accent-color); color: #000; }
 
-        .apk-badge {
-            background: #1e1e24;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            color: #2ed573;
-            border: 1px solid #2ed57333;
+        .latency-graph {
+            height: 40px;
+            width: 100px;
+            background: #000;
+            border: 1px solid #222;
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            padding: 2px;
+        }
+
+        .bar { background: var(--accent-color); width: 4px; }
+
+        .firebase-input {
+            background: #000;
+            border: 1px solid #333;
+            color: #00ff00;
+            padding: 8px;
+            width: 100%;
+            font-family: monospace;
+            font-size: 11px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -212,16 +225,27 @@
 
     <div class="panel">
         <div class="header">
-            <div class="header-title">SOUZA CHEATS - APK EXTERNAL <span class="apk-badge">FREE FIRE v1.118.1</span></div>
-            <button class="btn-sync" onclick="syncToFirebase()">SYNC TO CLOUD</button>
+            <div class="header-title">EXTERNAL SOUZA CHEATS// FIREBASE_CONNECTED</div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 10px; color: #444;">LATENCY:</span>
+                    <div class="latency-graph" id="latency-graph"></div>
+                    <span id="ping-val" style="font-size: 10px; color: var(--accent-color);">--ms</span>
+                </div>
+                <button class="btn-sync" onclick="syncToFirebase()">EXECUTE_SYNC</button>
+            </div>
         </div>
 
         <div class="main">
             <div class="sidebar">
-                <div class="nav-item active" onclick="switchTab('touch')">Touch & Sensi</div>
+                <div class="nav-item active" onclick="switchTab('aim')">Aim Assist Pro</div>
+                <div class="nav-item" onclick="switchTab('drag')">Auto-Drag (MSI)</div>
+                <div class="nav-item" onclick="switchTab('micro')">Micro-Adjustment</div>
+                <div class="nav-item" onclick="switchTab('fov')">Dynamic FOV</div>
+                <div class="nav-item" onclick="switchTab('touch')">Touch & Sensi</div>
                 <div class="nav-item" onclick="switchTab('gyro')">Gyroscope Filter</div>
                 <div class="nav-item" onclick="switchTab('straight')">Motion Straightener</div>
-                <div class="nav-item" onclick="switchTab('apk')" style="margin-top: 20px; border-top: 1px solid #333;">APK Metadata</div>
+                <div class="nav-item" onclick="switchTab('firebase')" style="margin-top: 20px; border-top: 1px solid #222;">Firebase Config</div>
             </div>
 
             <div class="content">
@@ -231,60 +255,86 @@
 
                 <div class="display-area">
                     <div class="code-box">
-                        <div id="code-header" style="color: #555; font-size: 10px; margin-bottom: 10px;">GENERATED LOGIC</div>
+                        <div style="position: absolute; top: 5px; right: 10px; color: #333; font-size: 9px;">LIVE_LOGIC_STREAM</div>
                         <pre id="code-display"></pre>
                     </div>
                     <div class="info-box">
-                        <span class="info-title" id="info-title">Função Selecionada</span>
-                        <p id="info-text">Interaja com os controles para ver a explicação técnica aqui.</p>
+                        <span class="info-title" id="info-title">FUNCTION_INFO</span>
+                        <p id="info-text">Selecione uma função para análise técnica.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="status-bar">
-            <div id="sync-status">Status: Connected to Firebase</div>
-            <div id="project-id-display">Target: com.dts.freefireth.FFMainActivity</div>
+            <div id="sync-status">STATUS: STANDBY // FIREBASE_READY</div>
+            <div>TARGET_ID: free-fire-8cd39 // ARCH: ARM64-V8A</div>
         </div>
     </div>
 
     <script>
-        let currentTab = 'touch';
+        let currentTab = 'aim';
         let database = null;
 
+        // Credenciais do seu google-services.json
         const firebaseConfig = {
             apiKey: "AIzaSyCOtWGv23Hfc7fmRBOgO6GVV2xn079_-_4",
             databaseURL: "https://free-fire-8cd39.firebaseio.com",
             projectId: "free-fire-8cd39"
         };
 
+        // Estado das configurações
         const config = {
-            sensi: 1.5,
+            sensi: 1.8,
+            dragForce: 2.5,
+            microSensi: 0.5,
+            fovSize: 150,
             gyroSamples: 4,
-            enableCurve: true,
-            enableStraight: false,
             deadzone: 0.1,
-            pollingRate: 90,
-            autoDetection: true
+            enableDrag: true,
+            enableMicro: true,
+            enableFov: true,
+            enableCurve: true,
+            enableStraight: false
         };
 
         function initFirebase() {
             try {
                 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
                 database = firebase.database();
+                document.getElementById('sync-status').textContent = "STATUS: CONNECTED // FIREBASE_ACTIVE";
+                document.getElementById('sync-status').style.color = "#00ff00";
             } catch (e) { console.error(e); }
         }
 
         function syncToFirebase() {
-            if (!database) return;
-            database.ref('settings').set({
+            if (!database) {
+                alert("Firebase não inicializado!");
+                return;
+            }
+            const start = Date.now();
+            database.ref('ultimate_settings').set({
                 ...config,
-                lastUpdated: Date.now(),
-                targetActivity: "com.dts.freefireth.FFMainActivity"
+                timestamp: start
             }).then(() => {
-                document.getElementById('sync-status').textContent = "Status: Synced Successfully!";
-                setTimeout(() => document.getElementById('sync-status').textContent = "Status: Connected to Firebase", 3000);
+                const lat = Date.now() - start;
+                document.getElementById('ping-val').textContent = lat + "ms";
+                updateGraph(lat);
+                document.getElementById('sync-status').textContent = "STATUS: SYNC_COMPLETE // LATENCY: " + lat + "MS";
+                setTimeout(() => {
+                    document.getElementById('sync-status').textContent = "STATUS: CONNECTED // FIREBASE_ACTIVE";
+                }, 2000);
             });
+        }
+
+        function updateGraph(val) {
+            const graph = document.getElementById('latency-graph');
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            const height = Math.min(val / 2, 38);
+            bar.style.height = height + 'px';
+            if (graph.children.length > 15) graph.removeChild(graph.firstChild);
+            graph.appendChild(bar);
         }
 
         function switchTab(tab) {
@@ -299,22 +349,47 @@
 
         function renderControls() {
             const container = document.getElementById('controls-container');
-            let html = `<div class="section-title">${currentTab.toUpperCase()} CONFIGURATION</div><div class="grid">`;
+            let html = `<div class="section-title">${currentTab.toUpperCase()}_MODULE</div><div class="grid">`;
 
-            if (currentTab === 'touch') {
+            if (currentTab === 'aim') {
+                html += `
+                    <div class="control-item">
+                        <div class="label-row"><span>Master Sensitivity</span><span class="value">${config.sensi}x</span></div>
+                        <input type="range" min="1.0" max="10.0" step="0.1" value="${config.sensi}" oninput="config.sensi = this.value; renderControls(); updateDisplay()">
+                    </div>
+                `;
+            } else if (currentTab === 'drag') {
+                html += `
+                    <div class="control-item">
+                        <div class="label-row"><span>Enable Auto-Drag (MSI)</span>
+                        <label class="switch"><input type="checkbox" ${config.enableDrag ? 'checked' : ''} onchange="config.enableDrag = this.checked; updateDisplay()">
+                        <span class="slider"></span></label></div>
+                    </div>
+                    <div class="control-item">
+                        <div class="label-row"><span>Drag Up Force</span><span class="value">${config.dragForce}x</span></div>
+                        <input type="range" min="1.0" max="5.0" step="0.1" value="${config.dragForce}" oninput="config.dragForce = this.value; renderControls(); updateDisplay()">
+                    </div>
+                `;
+            } else if (currentTab === 'micro') {
+                html += `
+                    <div class="control-item">
+                        <div class="label-row"><span>Micro-Adjustment Sensi</span><span class="value">${config.microSensi}x</span></div>
+                        <input type="range" min="0.1" max="1.0" step="0.05" value="${config.microSensi}" oninput="config.microSensi = this.value; renderControls(); updateDisplay()">
+                    </div>
+                `;
+            } else if (currentTab === 'fov') {
+                html += `
+                    <div class="control-item">
+                        <div class="label-row"><span>FOV Radius (Pixels)</span><span class="value">${config.fovSize}px</span></div>
+                        <input type="range" min="50" max="500" step="10" value="${config.fovSize}" oninput="config.fovSize = this.value; renderControls(); updateDisplay()">
+                    </div>
+                `;
+            } else if (currentTab === 'touch') {
                 html += `
                     <div class="control-item">
                         <div class="label-row"><span>Dynamic Sensi Curve</span>
                         <label class="switch"><input type="checkbox" ${config.enableCurve ? 'checked' : ''} onchange="config.enableCurve = this.checked; updateDisplay()">
                         <span class="slider"></span></label></div>
-                    </div>
-                    <div class="control-item">
-                        <div class="label-row"><span>Sensi Multiplier</span><span class="value">${config.sensi}x</span></div>
-                        <input type="range" min="0.5" max="5.0" step="0.1" value="${config.sensi}" oninput="config.sensi = this.value; renderControls(); updateDisplay()">
-                    </div>
-                    <div class="control-item">
-                        <div class="label-row"><span>Polling Rate (Hz)</span><span class="value">${config.pollingRate}Hz</span></div>
-                        <input type="range" min="30" max="120" step="10" value="${config.pollingRate}" oninput="config.pollingRate = this.value; renderControls(); updateDisplay()">
                     </div>
                 `;
             } else if (currentTab === 'gyro') {
@@ -322,10 +397,6 @@
                     <div class="control-item">
                         <div class="label-row"><span>Smoothing Samples</span><span class="value">${config.gyroSamples}</span></div>
                         <input type="range" min="1" max="20" value="${config.gyroSamples}" oninput="config.gyroSamples = this.value; renderControls(); updateDisplay()">
-                    </div>
-                    <div class="control-item">
-                        <div class="label-row"><span>Deadzone</span><span class="value">${config.deadzone}</span></div>
-                        <input type="range" min="0" max="0.5" step="0.05" value="${config.deadzone}" oninput="config.deadzone = this.value; renderControls(); updateDisplay()">
                     </div>
                 `;
             } else if (currentTab === 'straight') {
@@ -336,23 +407,22 @@
                         <span class="slider"></span></label></div>
                     </div>
                 `;
-            } else if (currentTab === 'apk') {
+            } else if (currentTab === 'firebase') {
                 html = `
-                    <div class="section-title">APK METADATA & DETECTION</div>
-                    <div style="font-size: 13px; color: #ccc;">
-                        <p><b>Package:</b> com.dts.freefireth</p>
-                        <p><b>Main Activity:</b> .FFMainActivity</p>
-                        <p><b>Native Code:</b> arm64-v8a</p>
-                        <div class="control-item" style="margin-top: 15px;">
-                            <div class="label-row"><span>Auto-Detect Game Window</span>
-                            <label class="switch"><input type="checkbox" ${config.autoDetection ? 'checked' : ''} onchange="config.autoDetection = this.checked; updateDisplay()">
-                            <span class="slider"></span></label></div>
-                        </div>
+                    <div class="section-title">FIREBASE_CONFIGURATION</div>
+                    <div class="control-item">
+                        <label style="font-size: 10px; color: #444;">API_KEY</label>
+                        <input type="text" class="firebase-input" value="${firebaseConfig.apiKey}" readonly>
+                        <label style="font-size: 10px; color: #444; margin-top: 10px; display: block;">DATABASE_URL</label>
+                        <input type="text" class="firebase-input" value="${firebaseConfig.databaseURL}" readonly>
+                        <label style="font-size: 10px; color: #444; margin-top: 10px; display: block;">PROJECT_ID</label>
+                        <input type="text" class="firebase-input" value="${firebaseConfig.projectId}" readonly>
                     </div>
+                    <p style="font-size: 10px; color: #444; margin-top: 15px;">As credenciais acima foram extraídas do seu google-services.json e estão prontas para uso.</p>
                 `;
             }
 
-            if (currentTab !== 'apk') html += `</div>`;
+            if (currentTab !== 'firebase') html += `</div>`;
             container.innerHTML = html;
         }
 
@@ -363,28 +433,34 @@
             
             let code = '';
             
-            if (currentTab === 'touch') {
-                infoTitle.textContent = "APK Optimized Touch";
-                infoText.textContent = "Ajusta a taxa de atualização (Polling Rate) para coincidir com o motor do jogo (" + config.pollingRate + "Hz), reduzindo o input lag.";
-                code = `<span class="keyword">val</span> POLLING_RATE = <span class="number">${config.pollingRate}</span>\n<span class="keyword">fun</span> <span class="function">loop</span>() {\n    <span class="function">delay</span>(<span class="number">1000</span> / POLLING_RATE)\n    <span class="function">processInput</span>()\n}`;
+            if (currentTab === 'drag') {
+                infoTitle.textContent = "AUTO-DRAG_LOGIC";
+                infoText.textContent = "Simula o comportamento de emuladores. Quando o tiro é detectado, o sistema aplica um multiplicador vertical (" + config.dragForce + "x) para forçar a mira a subir do peito para o pescoço/cabeça.";
+                code = `<span class="keyword">if</span> (isFiring && dy < <span class="number">0</span>) {\n    <span class="keyword">val</span> drag = dy * <span class="number">${config.dragForce}f</span>\n    <span class="function">injectInput</span>(<span class="number">0f</span>, drag)\n}`;
             } 
-            else if (currentTab === 'apk') {
-                infoTitle.textContent = "Game Detection";
-                infoText.textContent = "O auxílio só será ativado quando a janela ativa for 'com.dts.freefireth.FFMainActivity', garantindo que não interfira em outros apps.";
-                code = `<span class="keyword">if</span> (activeWindow == <span class="string">"com.dts.freefireth.FFMainActivity"</span>) {\n    <span class="function">enableAllFilters</span>()\n}`;
+            else if (currentTab === 'firebase') {
+                infoTitle.textContent = "FIREBASE_SYNC_MODULE";
+                infoText.textContent = "Este módulo gerencia a comunicação com o banco de dados. Todas as configurações são enviadas para o nó 'ultimate_settings'.";
+                code = `<span class="keyword">database</span>.ref(<span class="string">"ultimate_settings"</span>).set({\n    sensi: <span class="number">${config.sensi}</span>,\n    drag: <span class="number">${config.enableDrag}</span>\n})`;
+            }
+            else if (currentTab === 'straight') {
+                infoTitle.textContent = "MOTION_STRAIGHTENER";
+                infoText.textContent = "Anula o eixo X se o movimento for predominantemente vertical, forçando uma linha reta.";
+                code = `<span class="keyword">if</span> (Math.abs(dy) > Math.abs(dx) * <span class="number">2</span>) {\n    dx = <span class="number">0f</span>\n}`;
             }
             else {
-                // ... (outras abas mantêm a lógica anterior)
-                infoTitle.textContent = "Function Active";
-                infoText.textContent = "Lógica otimizada para a arquitetura arm64-v8a do APK.";
-                code = `<span class="comment">// Optimized for arm64-v8a</span>\n<span class="function">applyFilter</span>()`;
+                infoTitle.textContent = "ACTIVE_MODULE_LOGIC";
+                infoText.textContent = "Lógica de processamento em tempo real para o módulo selecionado.";
+                code = `<span class="comment">// Processing input for ${currentTab}...</span>\n<span class="function">applyFilter</span>(rawInput)`;
             }
 
             codeDisplay.innerHTML = code;
         }
 
         initFirebase();
-        switchTab('touch');
+        switchTab('aim');
+        // Simular ping inicial
+        for(let i=0; i<10; i++) updateGraph(Math.random() * 20 + 15);
     </script>
 </body>
 </html>
