@@ -1,452 +1,390 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Auxílio @Souza Xiters</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souza Cheats - APK External Edition</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --panel-bg: #121216;
+            --accent-color: #ff4757;
+            --text-main: #f0f0f0;
+            --text-dim: #a0a0a0;
+            --border-color: #2a2a32;
+            --code-bg: #000000;
+            --info-bg: #1e1e24;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #1a0000 0%, #4a0000 50%, #1a0000 100%);
-      color: #fff;
-      overflow-x: hidden;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-    /* Tela de Login */
-    .login-container {
-      width: 350px;
-      padding: 40px;
-      background: rgba(20, 20, 20, 0.95);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(255, 0, 0, 0.3);
-      border: 1px solid rgba(255, 0, 0, 0.2);
-      animation: fadeIn 0.5s ease-in;
-    }
+        .panel {
+            width: 1050px;
+            height: 750px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
 
-    .login-container h2 {
-      text-align: center;
-      color: #ff3333;
-      margin-bottom: 30px;
-      font-size: 28px;
-      text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
-    }
+        .header {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .input-group {
-      margin-bottom: 20px;
-    }
+        .header-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+        }
 
-    .input-group label {
-      display: block;
-      margin-bottom: 8px;
-      color: #ff6666;
-      font-size: 14px;
-      font-weight: 500;
-    }
+        .main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
 
-    .input-group input {
-      width: 100%;
-      padding: 12px;
-      background: rgba(40, 40, 40, 0.8);
-      border: 1px solid rgba(255, 0, 0, 0.3);
-      border-radius: 6px;
-      color: #fff;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
+        .sidebar {
+            width: 220px;
+            border-right: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
 
-    .input-group input:focus {
-      outline: none;
-      border-color: #ff3333;
-      box-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
-    }
+        .nav-item {
+            padding: 15px 30px;
+            font-size: 13px;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
+        }
 
-    .login-btn {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, #ff3333 0%, #cc0000 100%);
-      border: none;
-      border-radius: 6px;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+        .nav-item.active {
+            background: rgba(255, 71, 87, 0.1);
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
+        }
 
-    .login-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 51, 51, 0.4);
-    }
+        .content {
+            flex: 1;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
 
-    .login-btn:active {
-      transform: translateY(0);
-    }
+        .section {
+            background: rgba(255,255,255,0.02);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
 
-    .error-message {
-      color: #ff6666;
-      font-size: 13px;
-      margin-top: 10px;
-      text-align: center;
-      display: none;
-    }
+        .section-title {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
 
-    .discord-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #7289da;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
-    .discord-link:hover {
-      color: #99aab5;
-    }
+        .control-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-    /* Painel Principal */
-    .container {
-      width: 350px;
-      padding: 25px;
-      background: rgba(20, 20, 20, 0.95);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(255, 0, 0, 0.3);
-      border: 1px solid rgba(255, 0, 0, 0.2);
-      max-height: 80vh;
-      overflow-y: auto;
-      display: none;
-      animation: slideIn 0.5s ease-out;
-    }
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
 
-    .container::-webkit-scrollbar {
-      width: 8px;
-    }
+        .value { color: var(--accent-color); font-weight: bold; }
 
-    .container::-webkit-scrollbar-track {
-      background: rgba(40, 40, 40, 0.5);
-      border-radius: 4px;
-    }
+        .display-area {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 15px;
+            flex: 1;
+            min-height: 250px;
+        }
 
-    .container::-webkit-scrollbar-thumb {
-      background: #ff3333;
-      border-radius: 4px;
-    }
+        .code-box, .info-box {
+            background: var(--code-bg);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            font-size: 12px;
+            overflow-y: auto;
+        }
 
-    .container::-webkit-scrollbar-thumb:hover {
-      background: #cc0000;
-    }
+        .info-box {
+            background: var(--info-bg);
+            color: #ccc;
+            line-height: 1.6;
+        }
 
-    h2 {
-      text-align: center;
-      color: #ff3333;
-      margin-bottom: 25px;
-      font-size: 24px;
-      text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
-    }
+        .info-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
 
-    .logout-btn {
-      width: 100%;
-      padding: 10px;
-      background: rgba(255, 51, 51, 0.2);
-      border: 1px solid rgba(255, 51, 51, 0.4);
-      border-radius: 6px;
-      color: #ff6666;
-      font-size: 14px;
-      cursor: pointer;
-      margin-bottom: 20px;
-      transition: all 0.3s ease;
-    }
+        pre { margin: 0; color: #dcdcdc; font-family: 'Consolas', monospace; }
+        .keyword { color: #c678dd; }
+        .function { color: #61afef; }
+        .number { color: #d19a66; }
+        .comment { color: #5c6370; font-style: italic; }
+        .highlight { background: rgba(255, 71, 87, 0.15); border-left: 2px solid var(--accent-color); padding-left: 5px; }
 
-    .logout-btn:hover {
-      background: rgba(255, 51, 51, 0.3);
-      color: #ff3333;
-    }
+        input[type=range] { width: 100%; accent-color: var(--accent-color); }
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--accent-color); }
+        input:checked + .slider:before { transform: translateX(20px); }
 
-    .mod-menu {
-      display: block;
-    }
+        .status-bar {
+            padding: 10px 30px;
+            background: #000;
+            border-top: 1px solid var(--border-color);
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-dim);
+        }
 
-    .menu-item {
-      margin: 10px 0;
-      padding: 14px;
-      background: linear-gradient(135deg, rgba(255, 51, 51, 0.1) 0%, rgba(204, 0, 0, 0.1) 100%);
-      border: 1px solid rgba(255, 51, 51, 0.3);
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: left;
-      color: #ff6666;
-      position: relative;
-      font-size: 16px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      padding-left: 40px; /* Adiciona padding para o texto não ficar embaixo da seta */
-    }
+        .btn-sync {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-    .menu-item:hover {
-      background: linear-gradient(135deg, rgba(255, 51, 51, 0.2) 0%, rgba(204, 0, 0, 0.2) 100%);
-      border-color: #ff3333;
-      transform: translateX(5px);
-    }
+        .btn-sync:hover { opacity: 0.8; }
 
-    .menu-item::before {
-      content: '►';
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 12px;
-      transition: transform 0.3s ease;
-      color: #ff3333;
-    }
-
-    .menu-item.open::before {
-      transform: rotate(90deg);
-    }
-
-    .sub-options {
-      display: none;
-      padding: 15px 10px 10px 30px;
-      background: rgba(10, 10, 10, 0.5);
-      border-radius: 6px;
-      margin-top: 10px;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .checkbox-label {
-      font-size: 15px;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      margin: 8px 0;
-      cursor: pointer;
-      transition: color 0.3s ease;
-      user-select: none;
-    }
-
-    .checkbox-label:hover {
-      color: #ff6666;
-    }
-
-    .checkbox-label input {
-      width: 18px;
-      height: 18px;
-      margin-right: 12px;
-      cursor: pointer;
-      accent-color: #ff3333;
-    }
-
-    .command-prompt {
-      margin-top: 20px;
-      padding: 15px;
-      background: rgba(10, 10, 10, 0.8);
-      border: 1px solid rgba(255, 51, 51, 0.3);
-      border-radius: 8px;
-      font-size: 13px;
-      max-height: 150px;
-      overflow-y: auto;
-      color: #fff;
-      font-family: 'Courier New', monospace;
-    }
-
-    .command-prompt::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .command-prompt::-webkit-scrollbar-track {
-      background: rgba(40, 40, 40, 0.5);
-    }
-
-    .command-prompt::-webkit-scrollbar-thumb {
-      background: #ff3333;
-      border-radius: 3px;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+        .apk-badge {
+            background: #1e1e24;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            color: #2ed573;
+            border: 1px solid #2ed57333;
+        }
+    </style>
 </head>
 <body>
-  <!-- Tela de Login -->
-  <div class="login-container" id="loginContainer">
-    <h2>Loguin By Souza Xiters</h2>
-    <div class="input-group">
-      <label for="key">Key de Acesso</label>
-      <input type="password" id="key" placeholder="Digite sua Key" autocomplete="off" />
+
+    <div class="panel">
+        <div class="header">
+            <div class="header-title">SOUZA CHEATS - APK EXTERNAL <span class="apk-badge">FREE FIRE v1.118.1</span></div>
+            <button class="btn-sync" onclick="syncToFirebase()">SYNC TO CLOUD</button>
+        </div>
+
+        <div class="main">
+            <div class="sidebar">
+                <div class="nav-item active" onclick="switchTab('touch')">Touch & Sensi</div>
+                <div class="nav-item" onclick="switchTab('gyro')">Gyroscope Filter</div>
+                <div class="nav-item" onclick="switchTab('straight')">Motion Straightener</div>
+                <div class="nav-item" onclick="switchTab('apk')" style="margin-top: 20px; border-top: 1px solid #333;">APK Metadata</div>
+            </div>
+
+            <div class="content">
+                <div id="controls-container" class="section">
+                    <!-- Conteúdo dinâmico -->
+                </div>
+
+                <div class="display-area">
+                    <div class="code-box">
+                        <div id="code-header" style="color: #555; font-size: 10px; margin-bottom: 10px;">GENERATED LOGIC</div>
+                        <pre id="code-display"></pre>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-title" id="info-title">Função Selecionada</span>
+                        <p id="info-text">Interaja com os controles para ver a explicação técnica aqui.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div id="sync-status">Status: Connected to Firebase</div>
+            <div id="project-id-display">Target: com.dts.freefireth.FFMainActivity</div>
+        </div>
     </div>
-    <button class="login-btn" onclick="handleLogin()">Entrar</button>
-    <div class="error-message" id="errorMessage">Chave de acesso incorreta!</div>
-    <a href="https://discord.gg/7JxzbhHqqt" target="_blank" class="discord-link">Acessar nosso Discord</a>
-  </div>
 
-  <!-- Painel Principal -->
-  <div class="container" id="mainPanel">
-    <div class="mod-menu" id="modMenu">
-      <h2>Auxílio @Souza Xiters</h2>
-      <button class="logout-btn" onclick="handleLogout()">Sair</button>
+    <script>
+        let currentTab = 'touch';
+        let database = null;
 
-      <div class="menu-item" onclick="toggleOptions(this, 'trick-options')">Trick Functions</div>
-      <div class="sub-options" id="trick-options">
-        <label class="checkbox-label">
-          <input type="checkbox" onchange="updatePrompt(this, 'TrickHead')">
-          <span>TrickHead</span>
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" onchange="updatePrompt(this, 'TrickLock')">
-          <span>Trick Lock</span>
-        </label>
-      </div>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCOtWGv23Hfc7fmRBOgO6GVV2xn079_-_4",
+            databaseURL: "https://free-fire-8cd39.firebaseio.com",
+            projectId: "free-fire-8cd39"
+        };
 
-      <div class="menu-item" onclick="toggleOptions(this, 'legit-options')">Auxilio Functions</div>
-      <div class="sub-options" id="legit-options">
-        <label class="checkbox-label">
-          <input type="checkbox" onchange="updatePrompt(this, 'AuxilioRecuo')">
-          <span>Auxilio Recuo</span>
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" onchange="updatePrompt(this, 'AuxilioScope')">
-          <span>Auxilio Scope</span>
-        </label>
-      </div>
+        const config = {
+            sensi: 1.5,
+            gyroSamples: 4,
+            enableCurve: true,
+            enableStraight: false,
+            deadzone: 0.1,
+            pollingRate: 90,
+            autoDetection: true
+        };
 
-      <div class="menu-item" onclick="toggleOptions(this, 'color-options')">Menu Color</div>
-      <div class="sub-options" id="color-options">
-        <label class="checkbox-label">
-          <input type="checkbox" onchange="updatePrompt(this, 'RedColor')">
-          <span>Red Color</span>
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" onchange="updatePrompt(this, 'BlueColor')">
-          <span>Blue Color</span>
-        </label>
-      </div>
+        function initFirebase() {
+            try {
+                if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+                database = firebase.database();
+            } catch (e) { console.error(e); }
+        }
 
-      <div class="command-prompt" id="commandPrompt">
-        <span style="color: #ff6666;">Sistema iniciado...</span><br>
-      </div>
-    </div>
-  </div>
+        function syncToFirebase() {
+            if (!database) return;
+            database.ref('settings').set({
+                ...config,
+                lastUpdated: Date.now(),
+                targetActivity: "com.dts.freefireth.FFMainActivity"
+            }).then(() => {
+                document.getElementById('sync-status').textContent = "Status: Synced Successfully!";
+                setTimeout(() => document.getElementById('sync-status').textContent = "Status: Connected to Firebase", 3000);
+            });
+        }
 
-  <!-- JavaScript Otimizado -->
-  <script>
-    // Configurações de login (em produção, use autenticação no servidor)
-    const VALID_KEY = 'Souzaxiters-key-98k7h'; // Substitua pela sua chave única
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if(item.textContent.toLowerCase().includes(tab)) item.classList.add('active');
+            });
+            renderControls();
+            updateDisplay();
+        }
 
-    // Gerenciamento de loops
-    const loopTimers = {};
+        function renderControls() {
+            const container = document.getElementById('controls-container');
+            let html = `<div class="section-title">${currentTab.toUpperCase()} CONFIGURATION</div><div class="grid">`;
 
-    // Sistema de Login
-    function handleLogin() {
-      const key = document.getElementById('key').value.trim();
-      const errorMessage = document.getElementById('errorMessage');
-      const loginContainer = document.getElementById('loginContainer');
-      const mainPanel = document.getElementById('mainPanel');
+            if (currentTab === 'touch') {
+                html += `
+                    <div class="control-item">
+                        <div class="label-row"><span>Dynamic Sensi Curve</span>
+                        <label class="switch"><input type="checkbox" ${config.enableCurve ? 'checked' : ''} onchange="config.enableCurve = this.checked; updateDisplay()">
+                        <span class="slider"></span></label></div>
+                    </div>
+                    <div class="control-item">
+                        <div class="label-row"><span>Sensi Multiplier</span><span class="value">${config.sensi}x</span></div>
+                        <input type="range" min="0.5" max="5.0" step="0.1" value="${config.sensi}" oninput="config.sensi = this.value; renderControls(); updateDisplay()">
+                    </div>
+                    <div class="control-item">
+                        <div class="label-row"><span>Polling Rate (Hz)</span><span class="value">${config.pollingRate}Hz</span></div>
+                        <input type="range" min="30" max="120" step="10" value="${config.pollingRate}" oninput="config.pollingRate = this.value; renderControls(); updateDisplay()">
+                    </div>
+                `;
+            } else if (currentTab === 'gyro') {
+                html += `
+                    <div class="control-item">
+                        <div class="label-row"><span>Smoothing Samples</span><span class="value">${config.gyroSamples}</span></div>
+                        <input type="range" min="1" max="20" value="${config.gyroSamples}" oninput="config.gyroSamples = this.value; renderControls(); updateDisplay()">
+                    </div>
+                    <div class="control-item">
+                        <div class="label-row"><span>Deadzone</span><span class="value">${config.deadzone}</span></div>
+                        <input type="range" min="0" max="0.5" step="0.05" value="${config.deadzone}" oninput="config.deadzone = this.value; renderControls(); updateDisplay()">
+                    </div>
+                `;
+            } else if (currentTab === 'straight') {
+                html += `
+                    <div class="control-item">
+                        <div class="label-row"><span>Enable Straightener</span>
+                        <label class="switch"><input type="checkbox" ${config.enableStraight ? 'checked' : ''} onchange="config.enableStraight = this.checked; updateDisplay()">
+                        <span class="slider"></span></label></div>
+                    </div>
+                `;
+            } else if (currentTab === 'apk') {
+                html = `
+                    <div class="section-title">APK METADATA & DETECTION</div>
+                    <div style="font-size: 13px; color: #ccc;">
+                        <p><b>Package:</b> com.dts.freefireth</p>
+                        <p><b>Main Activity:</b> .FFMainActivity</p>
+                        <p><b>Native Code:</b> arm64-v8a</p>
+                        <div class="control-item" style="margin-top: 15px;">
+                            <div class="label-row"><span>Auto-Detect Game Window</span>
+                            <label class="switch"><input type="checkbox" ${config.autoDetection ? 'checked' : ''} onchange="config.autoDetection = this.checked; updateDisplay()">
+                            <span class="slider"></span></label></div>
+                        </div>
+                    </div>
+                `;
+            }
 
-      if (key === VALID_KEY) {
-        errorMessage.style.display = 'none';
-        loginContainer.style.display = 'none';
-        mainPanel.style.display = 'block';
-        logMessage('Login realizado com sucesso!', 'lightgreen');
-      } else {
-        errorMessage.style.display = 'block';
-        document.getElementById('key').value = '';
-      }
-    }
+            if (currentTab !== 'apk') html += `</div>`;
+            container.innerHTML = html;
+        }
 
-    function handleLogout() {
-      const loginContainer = document.getElementById('loginContainer');
-      const mainPanel = document.getElementById('mainPanel');
-      
-      // Limpar todos os loops ativos
-      Object.keys(loopTimers).forEach(stopLoop);
-      
-      // Resetar campo
-      document.getElementById('key').value = '';
+        function updateDisplay() {
+            const codeDisplay = document.getElementById('code-display');
+            const infoTitle = document.getElementById('info-title');
+            const infoText = document.getElementById('info-text');
+            
+            let code = '';
+            
+            if (currentTab === 'touch') {
+                infoTitle.textContent = "APK Optimized Touch";
+                infoText.textContent = "Ajusta a taxa de atualização (Polling Rate) para coincidir com o motor do jogo (" + config.pollingRate + "Hz), reduzindo o input lag.";
+                code = `<span class="keyword">val</span> POLLING_RATE = <span class="number">${config.pollingRate}</span>\n<span class="keyword">fun</span> <span class="function">loop</span>() {\n    <span class="function">delay</span>(<span class="number">1000</span> / POLLING_RATE)\n    <span class="function">processInput</span>()\n}`;
+            } 
+            else if (currentTab === 'apk') {
+                infoTitle.textContent = "Game Detection";
+                infoText.textContent = "O auxílio só será ativado quando a janela ativa for 'com.dts.freefireth.FFMainActivity', garantindo que não interfira em outros apps.";
+                code = `<span class="keyword">if</span> (activeWindow == <span class="string">"com.dts.freefireth.FFMainActivity"</span>) {\n    <span class="function">enableAllFilters</span>()\n}`;
+            }
+            else {
+                // ... (outras abas mantêm a lógica anterior)
+                infoTitle.textContent = "Function Active";
+                infoText.textContent = "Lógica otimizada para a arquitetura arm64-v8a do APK.";
+                code = `<span class="comment">// Optimized for arm64-v8a</span>\n<span class="function">applyFilter</span>()`;
+            }
 
-      // Esconder painel principal e mostrar tela de login
-      mainPanel.style.display = 'none';
-      loginContainer.style.display = 'flex'; // Usar flex para centralizar
-      logMessage('Logout realizado.', 'orange');
-    }
+            codeDisplay.innerHTML = code;
+        }
 
-    function toggleOptions(menuItem, subOptionsId) {
-      menuItem.classList.toggle('open');
-      const subOptions = document.getElementById(subOptionsId);
-      if (subOptions.style.display === 'block') {
-        subOptions.style.display = 'none';
-      } else {
-        subOptions.style.display = 'block';
-      }
-    }
-
-    function updatePrompt(checkbox, command) {
-      const commandPrompt = document.getElementById('commandPrompt');
-      const message = checkbox.checked ? 
-        `<span style="color: #00ff00;">Ativado: ${command}</span>` : 
-        `<span style="color: #ff0000;">Desativado: ${command}</span>`;
-      logMessage(message);
-
-      if (checkbox.checked) {
-        startLoop(command);
-      } else {
-        stopLoop(command);
-      }
-    }
-
-    function logMessage(message, color = '#fff') {
-      const commandPrompt = document.getElementById('commandPrompt');
-      const p = document.createElement('p');
-      p.innerHTML = `<span style="color: ${color};">${message}</span>`;
-      commandPrompt.appendChild(p);
-      commandPrompt.scrollTop = commandPrompt.scrollHeight;
-    }
-
-    function startLoop(command) {
-      // Simula um loop para cada comando ativado
-      // Em um cenário real, você enviaria este comando para um backend
-      if (!loopTimers[command]) {
-        logMessage(`Loop para ${command} iniciado.`, 'lightblue');
-        loopTimers[command] = setInterval(() => {
-          // console.log(`Executando ${command}...`);
-        }, 1000); // Executa a cada 1 segundo
-      }
-    }
-
-    function stopLoop(command) {
-      if (loopTimers[command]) {
-        clearInterval(loopTimers[command]);
-        delete loopTimers[command];
-        logMessage(`Loop para ${command} parado.`, 'orange');
-      }
-    }
-  </script>
+        initFirebase();
+        switchTab('touch');
+    </script>
 </body>
 </html>
