@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>AUXILIO iOS · Painel EXTERNAL</title>
+    <title>AUXILIO IOS - EXTERNAL</title>
     <style>
         * {
             margin: 0;
@@ -13,565 +13,579 @@
         }
 
         body {
-            background: radial-gradient(circle at 20% 30%, #2a0505, #0a0000);
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', 'Segoe UI', system-ui, sans-serif;
+            font-family: -apple-system, 'Helvetica Neue', 'Segoe UI', system-ui, sans-serif;
             padding: 20px;
         }
 
-        /* Container estilo iPhone (card com cantos arredondados, vidro fosco) */
-        .iphone-panel {
-            max-width: 480px;
+        /* Container estilo exatamente igual à imagem */
+        .panel {
+            max-width: 400px;
             width: 100%;
-            background: rgba(20, 0, 0, 0.75);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border-radius: 64px 64px 56px 56px;
-            box-shadow: 0 30px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 40, 40, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            padding: 28px 24px 38px;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(255, 60, 60, 0.4);
-        }
-
-        /* header com @SOUZA */
-        .brand {
-            text-align: center;
-            margin-bottom: 24px;
-            position: relative;
-        }
-        .brand h1 {
-            font-size: 38px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #ff3a3a, #ff8a8a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        .brand .tag {
-            font-size: 14px;
-            color: #ff8a8a;
-            background: rgba(255, 40, 40, 0.2);
-            display: inline-block;
-            padding: 5px 14px;
+            background: #111111;
             border-radius: 40px;
-            backdrop-filter: blur(4px);
-            margin-top: 8px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
+            padding: 30px 24px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 1px solid #ff2222;
         }
 
-        /* INFO CARD */
-        .info-card {
-            background: #1e0707e0;
-            border-radius: 38px;
-            padding: 18px 20px;
-            margin: 20px 0;
-            border-left: 5px solid #ff2a2a;
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3);
+        /* @SOUZA */
+        .souza {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .souza h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #ff3333;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 0 #440000;
+        }
+
+        /* AIMLOCK INFO */
+        .aimlock-section {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 20px;
+            border: 1px solid #ff3333;
         }
         .aimlock-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: #ff6b6b;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 20px;
+            font-weight: 800;
+            color: #ff4444;
             margin-bottom: 12px;
             letter-spacing: -0.3px;
         }
-        .aimlock-title span {
-            background: #ff3a3a30;
-            padding: 4px 10px;
-            border-radius: 40px;
+        .aimlock-desc {
             font-size: 14px;
+            color: #ff8888;
+            line-height: 1.5;
+            margin-bottom: 12px;
             font-weight: 500;
-            color: #ffb4b4;
         }
-        .feature-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 16px 0 12px;
+        .aimlock-desc span {
+            color: #ff6666;
         }
-        .feature-badge {
-            background: #2f0f0f;
-            padding: 8px 16px;
-            border-radius: 40px;
+        .fov-line {
             font-size: 14px;
-            font-weight: 600;
-            color: #ff8080;
-            border: 0.5px solid #ff4a4a;
-            backdrop-filter: blur(2px);
-        }
-        .fov-value {
-            font-family: monospace;
-            font-weight: 800;
-            background: #00000060;
-            padding: 6px 12px;
-            border-radius: 26px;
-            color: #ff5e5e;
+            color: #ff7777;
+            margin-top: 8px;
+            font-weight: 500;
         }
 
-        /* toggle do tipo "AO ATIRA / AO OLHA" estilo switch */
-        .modo-switch {
-            background: #1f0c0c;
-            border-radius: 60px;
-            padding: 6px;
-            display: flex;
-            gap: 12px;
-            margin: 24px 0 20px;
-            border: 1px solid #ff434370;
-        }
-        .modo-option {
-            flex: 1;
+        /* AUXILIO EXTERNAL */
+        .auxilio-title {
             text-align: center;
-            padding: 12px 8px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 18px;
+            font-size: 22px;
+            font-weight: 800;
+            color: #ff3333;
+            margin: 20px 0 15px;
             letter-spacing: 1px;
-            background: transparent;
-            color: #ffa0a0;
-            transition: 0.2s;
-            cursor: pointer;
-            user-select: none;
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid #ff4444;
         }
-        .modo-option.active {
-            background: #e32424;
-            color: white;
-            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.5);
-            text-shadow: 0 1px 0 #990000;
-        }
-        /* funções adicionais: AIMBOT No Recoil + AIMBOT 2X BYPASS */
-        .extra-funcs {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: space-between;
+
+        /* funções: */
+        .funcoes {
             margin: 20px 0;
         }
-        .func-card {
-            background: #260b0bd9;
+        .funcoes-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff5555;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .funcoes-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+        }
+        .funcao-btn {
             flex: 1;
-            border-radius: 32px;
-            padding: 14px 6px;
+            background: #1f1f1f;
+            border: 1px solid #ff4444;
+            border-radius: 50px;
+            padding: 12px 0;
             text-align: center;
-            border: 1px solid #ff5a5a70;
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff8888;
+            cursor: pointer;
             transition: all 0.2s;
         }
-        .func-card .label {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: #ffb7b7;
-            margin-bottom: 8px;
-        }
-        .func-card .status {
-            font-size: 24px;
-            font-weight: 800;
-            color: #ff7070;
-            letter-spacing: 2px;
-        }
-        .toggle-btn {
-            background: #3d1414;
-            border: none;
-            color: #ffb3b3;
-            font-size: 22px;
-            margin-top: 8px;
-            padding: 6px 16px;
-            border-radius: 60px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
-            font-family: monospace;
-        }
-        .toggle-btn.active-status {
-            background: #c92a2a;
+        .funcao-btn.active {
+            background: #ff2222;
             color: white;
-            box-shadow: 0 0 6px #ff4d4d;
+            border-color: #ff0000;
+            box-shadow: 0 0 10px rgba(255,0,0,0.5);
         }
 
-        /* botão INJETAR destaque */
+        /* INJETAR */
+        .injetar {
+            margin: 25px 0;
+        }
         .injetar-btn {
-            background: linear-gradient(95deg, #b91c1c, #ff3a3a);
-            border: none;
             width: 100%;
-            padding: 18px 10px;
-            border-radius: 56px;
-            font-size: 26px;
+            background: #ff2222;
+            border: none;
+            border-radius: 60px;
+            padding: 18px;
+            font-size: 28px;
             font-weight: 800;
-            letter-spacing: 2px;
             color: white;
-            text-shadow: 0 1px 3px #4a0000;
-            margin: 25px 0 18px;
+            text-align: center;
             cursor: pointer;
-            transition: 0.15s linear;
-            box-shadow: 0 12px 20px -8px #a00000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            transition: 0.1s linear;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            box-shadow: 0 5px 0 #880000;
         }
         .injetar-btn:active {
-            transform: scale(0.97);
-            background: linear-gradient(95deg, #a01515, #dd2a2a);
-            box-shadow: 0 5px 12px #880000;
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #880000;
         }
 
-        /* log/status feedback */
-        .console-log {
-            background: #0a0101c9;
-            border-radius: 28px;
-            padding: 12px 16px;
-            margin-top: 16px;
-            font-size: 13px;
-            font-family: 'SF Mono', monospace;
-            color: #ffa0a0;
-            border-left: 3px solid #ff2e2e;
-            backdrop-filter: blur(4px);
+        /* AUXILIO IOS footer */
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ff3333;
         }
-        .log-line {
-            display: flex;
-            gap: 8px;
-            align-items: baseline;
-            flex-wrap: wrap;
+        .footer span {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ff4444;
+            letter-spacing: 1px;
         }
-        .log-time {
-            color: #ff7777;
-            font-weight: 600;
-        }
-        button {
-            background: none;
-            border: none;
-        }
-        .status-indicator {
+
+        /* Status indicators */
+        .status-badge {
             display: inline-block;
             width: 10px;
             height: 10px;
             border-radius: 10px;
-            background: #ff3a3a;
-            box-shadow: 0 0 6px red;
+            background: #ff3333;
             margin-right: 8px;
+            box-shadow: 0 0 5px red;
         }
-        hr {
-            border-color: #ff4d4d30;
-            margin: 12px 0;
+        .log-area {
+            background: #0a0a0a;
+            border-radius: 15px;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 11px;
+            font-family: monospace;
+            color: #ff7777;
+            border: 1px solid #ff3333;
         }
-        .bypass-fov {
+        .log-line {
+            margin: 5px 0;
+        }
+
+        /* Slider FOV */
+        .fov-control {
+            margin-top: 12px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            gap: 10px;
+        }
+        .fov-control input {
+            flex: 1;
+            accent-color: #ff2222;
+        }
+        .fov-value {
+            background: #1a1a1a;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #ff6666;
         }
     </style>
 </head>
 <body>
+    <div class="panel">
+        <!-- @SOUZA -->
+        <div class="souza">
+            <h1>@SOUZA</h1>
+        </div>
 
-<div class="iphone-panel">
-    <div class="brand">
-        <h1>@SOUZA</h1>
-        <div class="tag">⚡ EXTERNAL ENGINE ⚡</div>
-    </div>
+        <!-- AIMLOCK INFO -->
+        <div class="aimlock-section">
+            <div class="aimlock-title">## AIMLOCK INFO</div>
+            <div class="aimlock-desc">
+                AIMBOT No Recoil AIMBOT 2X BYPASS Fov <span id="fovDisplayText">5%</span>
+            </div>
+            <div class="fov-line">⚡ BYPASS ATIVO | ANTI-RECOIL</div>
+            <div class="fov-control">
+                <span style="color:#ff7777; font-size:13px;">FOV:</span>
+                <input type="range" id="fovSlider" min="1" max="12" step="0.5" value="5">
+                <span class="fov-value" id="fovPercent">5%</span>
+            </div>
+        </div>
 
-    <div class="info-card">
-        <div class="aimlock-title">
-            🔒 AIMLOCK INFO 
-            <span>ACTIVE</span>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-badge">🎯 AIMBOT No Recoil</div>
-            <div class="feature-badge">⚡ AIMBOT 2X BYPASS</div>
-            <div class="feature-badge">📐 Fov <span id="fovValueDisplay">5%</span></div>
-        </div>
-        <div class="bypass-fov">
-            <span style="color:#ffafaf;">🔧 FOV AJUSTE</span>
-            <input type="range" id="fovSlider" min="1" max="12" step="0.5" value="5" style="width: 60%; background: #c92a2a; accent-color: #ff3333;">
-            <span id="fovPercent" class="fov-value">5%</span>
-        </div>
-        <div style="font-size:13px; margin-top:6px; opacity:0.8;">🛡️ BYPASS ATIVO | ANTI-RECOIL</div>
-    </div>
+        <!-- AUXILIO EXTERNAL -->
+        <div class="auxilio-title">**AUXILIO EXTERNAL**</div>
 
-    <!-- MODO "AO ATIRA / AO OLHA" principal função -->
-    <div class="modo-switch" id="modoSwitchContainer">
-        <div class="modo-option" data-modo="atira" id="modoAtira">🔫 AO ATIRA</div>
-        <div class="modo-option" data-modo="olha" id="modoOlha">👁️ AO OLHA</div>
-    </div>
+        <!-- funções: AO ATIRA / AO OLHA -->
+        <div class="funcoes">
+            <span class="funcoes-label">funções:</span>
+            <div class="funcoes-buttons">
+                <div class="funcao-btn" data-modo="atira" id="btnAtira">AO ATIRA</div>
+                <div class="funcao-btn" data-modo="olha" id="btnOlha">AO OLHA</div>
+            </div>
+        </div>
 
-    <!-- Toggles das engines adicionais: No Recoil + 2X BYPASS -->
-    <div class="extra-funcs">
-        <div class="func-card">
-            <div class="label">🚫 NO RECOIL</div>
-            <div class="status" id="noRecoilStatus">OFF</div>
-            <button class="toggle-btn" id="toggleNoRecoil">ATIVAR</button>
+        <!-- INJETAR -->
+        <div class="injetar">
+            <button class="injetar-btn" id="injetarBtn">INJETAR</button>
         </div>
-        <div class="func-card">
-            <div class="label">⚡ 2X BYPASS</div>
-            <div class="status" id="bypass2xStatus">OFF</div>
-            <button class="toggle-btn" id="toggleBypass2x">ATIVAR</button>
+
+        <!-- AUXILIO IOS -->
+        <div class="footer">
+            <span># AUXILIO IOS</span>
         </div>
-    </div>
-    
-    <!-- Botão INJETAR (engine hook) -->
-    <button class="injetar-btn" id="injetarBtn">
-        💉 INJETAR
-        <span style="font-size: 20px;">🔌</span>
-    </button>
-    
-    <!-- Console style com último log e engine status -->
-    <div class="console-log" id="consoleLog">
-        <div class="log-line">
-            <span class="log-time">▶ SYSTEM</span>
-            <span id="logMsg">⚙️ AUXILIO EXTERNAL pronto | Modo: AO ATIRA</span>
-        </div>
-        <div class="log-line" style="margin-top: 6px;">
-            <span class="status-indicator"></span>
-            <span id="engineMeta">ENGINE: idle | RED FLARE v1.0 (iOS)</span>
+
+        <!-- Log / Status area -->
+        <div class="log-area" id="logArea">
+            <div class="log-line"><span class="status-badge"></span> SYSTEM READY</div>
+            <div class="log-line" id="statusMsg">⚙️ Aguardando injeção...</div>
+            <div class="log-line" id="modoStatus">Modo: --</div>
         </div>
     </div>
-    <div style="text-align: center; margin-top: 16px; font-size: 11px; color: #ff7979;">
-        ⚠️ EXTERNAL AUX | iPADA/iPhone compatibility
-    </div>
-</div>
 
-<script>
-    // ---------------------------
-    // State machine (simulando engine interna + Java backend integrado)
-    // ---------------------------
-    let engineState = {
-        injected: false,        // se já injetou módulo externo
-        currentModo: "atira",   // "atira" ou "olha" -> define trigger do aimbot
-        noRecoil: false,
-        bypass2x: false,
-        fov: 5.0,               // percentual 5%
-        aimlockActive: false,   // ativado via injeção
-        lastAction: ""
-    };
+    <script>
+        // Estado da engine
+        let engineState = {
+            injected: false,
+            currentModo: "atira", // atira ou olha
+            fov: 5.0,
+            noRecoil: true,       // SEMPRE ATIVO (AIMBOT No Recoil)
+            bypass2x: true,       // SEMPRE ATIVO (AIMBOT 2X BYPASS)
+            aimlockActive: false
+        };
 
-    // Referências DOM
-    const modoAtiraDiv = document.getElementById('modoAtira');
-    const modoOlhaDiv = document.getElementById('modoOlha');
-    const toggleNoRecoilBtn = document.getElementById('toggleNoRecoil');
-    const toggleBypass2xBtn = document.getElementById('toggleBypass2x');
-    const injetarBtn = document.getElementById('injetarBtn');
-    const fovSlider = document.getElementById('fovSlider');
-    const fovPercentSpan = document.getElementById('fovPercent');
-    const fovValueDisplaySpan = document.getElementById('fovValueDisplay');
-    const noRecoilStatusSpan = document.getElementById('noRecoilStatus');
-    const bypass2xStatusSpan = document.getElementById('bypass2xStatus');
-    const logMsgSpan = document.getElementById('logMsg');
-    const engineMetaSpan = document.getElementById('engineMeta');
+        // DOM elements
+        const btnAtira = document.getElementById('btnAtira');
+        const btnOlha = document.getElementById('btnOlha');
+        const injetarBtn = document.getElementById('injetarBtn');
+        const fovSlider = document.getElementById('fovSlider');
+        const fovPercent = document.getElementById('fovPercent');
+        const fovDisplayText = document.getElementById('fovDisplayText');
+        const statusMsg = document.getElementById('statusMsg');
+        const modoStatus = document.getElementById('modoStatus');
 
-    // Função de log no console do painel
-    function addLog(message, isError = false) {
-        const prefix = isError ? "⚠️ " : "✓ ";
-        logMsgSpan.innerHTML = `${prefix} ${message}`;
-        // atualiza também meta engine se necessário
-        if (engineState.injected) {
-            engineMetaSpan.innerHTML = `🔴 ENGINE: ACTIVE | ${engineState.currentModo === "atira" ? "FIRE TRIGGER" : "ADS TRIGGER"} | FOV ${engineState.fov}%`;
-        } else {
-            engineMetaSpan.innerHTML = `🟤 ENGINE: standby | pressione INJETAR`;
+        // Função de log
+        function updateStatus(message, isError = false) {
+            statusMsg.innerHTML = `${isError ? '⚠️' : '✓'} ${message}`;
+            // auto reset visual after 3s? melhor manter
         }
-        // auto reset do log após 2.5s? mas pode manter último, é um terminal
-        setTimeout(() => {
-            if (document.activeElement !== injetarBtn) {
-                // só pra manter referência, não apagar completamente
+
+        function updateModoDisplay() {
+            if (engineState.currentModo === "atira") {
+                modoStatus.innerHTML = `Modo: 🔫 AO ATIRA (ativado ao disparar)`;
+            } else {
+                modoStatus.innerHTML = `Modo: 👁️ AO OLHA (ativado ao mirar)`;
             }
-        }, 3000);
-    }
+        }
 
-    // Atualiza interface dos toggles conforme estado da engine
-    function updateUIFromState() {
-        // No Recoil status
-        noRecoilStatusSpan.innerText = engineState.noRecoil ? "ON" : "OFF";
-        toggleNoRecoilBtn.innerText = engineState.noRecoil ? "DESATIVAR" : "ATIVAR";
-        toggleNoRecoilBtn.classList.toggle('active-status', engineState.noRecoil);
-        
-        // 2X Bypass status
-        bypass2xStatusSpan.innerText = engineState.bypass2x ? "ON" : "OFF";
-        toggleBypass2xBtn.innerText = engineState.bypass2x ? "DESATIVAR" : "ATIVAR";
-        toggleBypass2xBtn.classList.toggle('active-status', engineState.bypass2x);
-        
-        // Modo ativo visual
-        if (engineState.currentModo === "atira") {
-            modoAtiraDiv.classList.add('active');
-            modoOlhaDiv.classList.remove('active');
-        } else {
-            modoOlhaDiv.classList.add('active');
-            modoAtiraDiv.classList.remove('active');
+        // Atualiza UI dos botões
+        function updateUI() {
+            if (engineState.currentModo === "atira") {
+                btnAtira.classList.add('active');
+                btnOlha.classList.remove('active');
+            } else {
+                btnOlha.classList.add('active');
+                btnAtira.classList.remove('active');
+            }
+            
+            // FOV display
+            fovPercent.innerText = engineState.fov + "%";
+            fovDisplayText.innerText = engineState.fov + "%";
+            fovSlider.value = engineState.fov;
         }
-        
-        // FOV display
-        fovPercentSpan.innerText = engineState.fov + "%";
-        fovValueDisplaySpan.innerText = engineState.fov + "%";
-        if (fovSlider) fovSlider.value = engineState.fov;
-    }
 
-    // Core Engine "Java-like" behavior - simulando lógica interna do aimbot conforme modo
-    // essa engine é chamada a cada "gatilho", mas também pode ser usada com injeção ativa.
-    function engineTick() {
-        if (!engineState.injected) {
-            return { success: false, message: "Engine not injected. Clique INJETAR." };
+        // Engine principal (simula o backend com Java)
+        function executeEngine() {
+            if (!engineState.injected) {
+                updateStatus("Engine não injetada. Clique em INJETAR primeiro.", true);
+                return false;
+            }
+            
+            // As funções AIMBOT No Recoil e AIMBOT 2X BYPASS estão sempre ativas
+            let actionMsg = "";
+            let triggerType = engineState.currentModo === "atira" ? "DISPARO" : "MIRA/OLHAR";
+            
+            actionMsg = `🎯 AIMBOT ATIVADO! (${triggerType}) | No Recoil: ON | 2X BYPASS: ON | FOV: ${engineState.fov}%`;
+            
+            // Simula efeito do AIMBOT 2X BYPASS
+            if (engineState.bypass2x) {
+                actionMsg += " [BYPASS DETECTADO]";
+            }
+            
+            updateStatus(actionMsg);
+            
+            // Adiciona log extra no console visual
+            const logArea = document.getElementById('logArea');
+            const newLog = document.createElement('div');
+            newLog.className = 'log-line';
+            newLog.style.fontSize = '10px';
+            newLog.style.opacity = '0.8';
+            newLog.innerHTML = `› ${new Date().toLocaleTimeString()} | ${actionMsg.substring(0, 60)}`;
+            logArea.appendChild(newLog);
+            // Mantém apenas últimas 5 linhas
+            while(logArea.children.length > 8) {
+                if(logArea.children[2]) logArea.removeChild(logArea.children[2]);
+            }
+            
+            return true;
         }
-        // Simula a lógica do AUXILIO EXTERNAL com base no modo e toggles
-        let actionMsg = "";
-        let triggerCondition = false;
-        
-        // Modo: AO ATIRA ou AO OLHA (simula detecção de ação do usuário)
-        // Em um cenário real essa engine seria chamada durante eventos de mira; aqui colocamos uma verificação didática
-        if (engineState.currentModo === "atira") {
-            triggerCondition = true;  // representa que o jogador está atirando (simulado)
-            actionMsg = "🔫 AIMBOT ATIVADO NO DISPARO!  (NoRecoil + BYPASS aplicado)";
-        } else {
-            triggerCondition = true;  // ao olhar (ADS) modo ativado
-            actionMsg = "👁️ AIMBOT ATIVADO AO MIRAR (AO OLHA) - mira assistida com FOV " + engineState.fov + "%";
-        }
-        
-        if (triggerCondition) {
-            let finalMsg = actionMsg;
-            if (engineState.noRecoil) finalMsg += " | NO RECOIL ATIVO";
-            if (engineState.bypass2x) finalMsg += " | 2X BYPASS DETECTADO (anti-detecção)";
-            finalMsg += ` | FOV ${engineState.fov}% bloqueado.`;
-            addLog(finalMsg);
-            return { success: true, message: finalMsg };
-        }
-        return { success: false, message: "aguardando ação..." };
-    }
-    
-    // Manipular o modo clicável
-    modoAtiraDiv.addEventListener('click', () => {
-        if (engineState.currentModo === "atira") return;
-        engineState.currentModo = "atira";
-        updateUIFromState();
-        addLog(`Modo alterado: AO ATIRA → AIMBOT será acionado ao disparar.`);
-        if (engineState.injected) engineTick();
-    });
-    
-    modoOlhaDiv.addEventListener('click', () => {
-        if (engineState.currentModo === "olha") return;
-        engineState.currentModo = "olha";
-        updateUIFromState();
-        addLog(`Modo alterado: AO OLHA → AIMBOT ativado ao mirar/olhar.`);
-        if (engineState.injected) engineTick();
-    });
-    
-    // Toggle No Recoil
-    toggleNoRecoilBtn.addEventListener('click', () => {
-        if (!engineState.injected) {
-            addLog("⚠️ Primeiro injete o AUXILIO EXTERNAL para alternar NO RECOIL.", true);
-            return;
-        }
-        engineState.noRecoil = !engineState.noRecoil;
-        updateUIFromState();
-        addLog(`🚫 NO RECOIL ${engineState.noRecoil ? "ATIVADO" : "DESATIVADO"} (controle de recuo 100% removido)`);
-        if (engineState.injected) engineTick(); // re-afirma ações
-    });
-    
-    // Toggle 2X BYPASS
-    toggleBypass2xBtn.addEventListener('click', () => {
-        if (!engineState.injected) {
-            addLog("⚠️ Necessário INJETAR engine antes de ativar 2X BYPASS.", true);
-            return;
-        }
-        engineState.bypass2x = !engineState.bypass2x;
-        updateUIFromState();
-        addLog(`⚡ 2X BYPASS ${engineState.bypass2x ? "ATIVADO" : "DESATIVADO"} (camuflagem de varredura)`);
-        if (engineState.injected) engineTick();
-    });
-    
-    // fov slider
-    fovSlider.addEventListener('input', (e) => {
-        let val = parseFloat(e.target.value);
-        engineState.fov = val;
-        updateUIFromState();
-        addLog(`🔍 FOV ajustado para ${engineState.fov}% (campo de mira do aimbot)`);
-        if (engineState.injected) {
-            // simula atualização de mira
-            engineTick();
-        }
-    });
-    
-    // BOTÃO INJETAR -> ativa a engine externa + todas as funcionalidades
-    injetarBtn.addEventListener('click', () => {
-        if (!engineState.injected) {
-            // processo de injeção com sucesso (simula Enginer + Java payload)
-            engineState.injected = true;
-            // Preserva configurações atuais, mas reseta flags de aimlock como ativo
-            engineState.aimlockActive = true;
-            updateUIFromState();
-            addLog("💉 AUXILIO EXTERNAL injetado! Engine rodando com privilégios. AIMBOT, NoRecoil e BYPASS liberados.");
-            engineMetaSpan.innerHTML = `🔴 ENGINE: ACTIVE | ${engineState.currentModo === "atira" ? "FIRE TRIGGER" : "ADS TRIGGER"} | FOV ${engineState.fov}%`;
-            // Executa tick para mostrar status
-            setTimeout(() => {
-                engineTick();
-            }, 100);
-        } else {
-            // Se já injetado, podemos reativar ou apenas dar feedback de "Reinjeção" (opcional)
-            addLog("⚠️ Engine já está ativa. Caso precise recarregar, reinicie o painel. Reforçando hooks...");
-            engineTick();
-            // simular reforço
-            engineMetaSpan.innerHTML = `🔴 ENGINE: REINFORCED | ${engineState.currentModo === "atira" ? "FIRE AIM" : "ADS AIM"} ativo.`;
-        }
-    });
-    
-    // Simular eventos periódicos de mira/engajamento (para demonstrar que o Engine funciona continuamente)
-    // Como se o 'Java backend' estivesse monitorando ações no jogo.
-    let intervalDemo = null;
-    function startBackgroundEngineDemo() {
-        if (intervalDemo) clearInterval(intervalDemo);
-        intervalDemo = setInterval(() => {
-            if (engineState.injected) {
-                // apenas para demonstração, simulamos a cada 8 segundos uma checagem de ação aleatória
-                // Isso dá sensação de "Engine monitorando" mas sem flood.
-                const randomCheck = Math.random();
-                if (randomCheck > 0.65) {   // ~35% chance de acionar uma verificação a cada 7s
-                    engineTick();
+
+        // Simula o monitoramento do jogo (gatilho automático baseado no modo)
+        // Isso faz a engine responder como se estivesse sempre verificando "AO ATIRA" ou "AO OLHA"
+        let lastTriggerTime = 0;
+        function gameLoopSimulation() {
+            if (!engineState.injected) return;
+            
+            // Simula um evento periódico de "jogador atirando" ou "jogador mirando"
+            // Dependendo do modo, aciona a engine com mais frequência
+            const now = Date.now();
+            // Para demonstrar as funções, vamos gerar eventos a cada 4-6 segundos simulando ação do usuário
+            if (now - lastTriggerTime > 4500) {
+                lastTriggerTime = now;
+                
+                if (engineState.currentModo === "atira") {
+                    // Simula que o jogador está atirando
+                    updateStatus(`🔫 [GATILHO] Disparo detectado! Executando AIMBOT No Recoil...`);
+                    executeEngine();
                 } else {
-                    // somente log sutil
-                    if (Math.random() > 0.85) {
-                        addLog(`🕹️ Engine heartbeat: ${engineState.currentModo === "atira" ? "aguardando trigger de tiro" : "aguardando mira (AO OLHA)"} - FOV ${engineState.fov}%`);
+                    // Simula que o jogador está olhando/mirando
+                    updateStatus(`👁️ [MIRA] AO OLHA ativado! AIMBOT 2X BYPASS em ação...`);
+                    executeEngine();
+                }
+            }
+        }
+
+        // Eventos dos botões de função (AO ATIRA / AO OLHA)
+        btnAtira.addEventListener('click', () => {
+            if (engineState.currentModo === "atira") return;
+            engineState.currentModo = "atira";
+            updateUI();
+            updateModoDisplay();
+            updateStatus(`Modo alterado para: AO ATIRA (AIMBOT ativado ao disparar)`);
+            if (engineState.injected) {
+                executeEngine();
+            }
+        });
+
+        btnOlha.addEventListener('click', () => {
+            if (engineState.currentModo === "olha") return;
+            engineState.currentModo = "olha";
+            updateUI();
+            updateModoDisplay();
+            updateStatus(`Modo alterado para: AO OLHA (AIMBOT ativado ao mirar/olhar)`);
+            if (engineState.injected) {
+                executeEngine();
+            }
+        });
+
+        // FOV slider
+        fovSlider.addEventListener('input', (e) => {
+            engineState.fov = parseFloat(e.target.value);
+            updateUI();
+            updateStatus(`FOV ajustado para ${engineState.fov}% (campo de mira do aimbot)`);
+            if (engineState.injected) {
+                // Atualiza engine com novo FOV
+                updateStatus(`⚡ AIMBOT recalibrado para FOV ${engineState.fov}% com 2X BYPASS`);
+            }
+        });
+
+        // Botão INJETAR - ativa todas as funções
+        injetarBtn.addEventListener('click', () => {
+            if (!engineState.injected) {
+                engineState.injected = true;
+                engineState.noRecoil = true;
+                engineState.bypass2x = true;
+                engineState.aimlockActive = true;
+                
+                updateUI();
+                updateModoDisplay();
+                updateStatus(`✅ INJETADO! AUXILIO EXTERNAL ativado.`);
+                
+                // Adiciona log de confirmação com todas as funções
+                const logArea = document.getElementById('logArea');
+                const injectLog = document.createElement('div');
+                injectLog.className = 'log-line';
+                injectLog.style.color = '#ff5555';
+                injectLog.style.fontWeight = 'bold';
+                injectLog.innerHTML = `💉 INJEÇÃO REALIZADA COM SUCESSO | AIMBOT No Recoil ✅ | AIMBOT 2X BYPASS ✅ | FOV ${engineState.fov}%`;
+                logArea.appendChild(injectLog);
+                
+                // Mensagem adicional
+                setTimeout(() => {
+                    updateStatus(`🔴 Engine rodando | Modo: ${engineState.currentModo === "atira" ? "AO ATIRA" : "AO OLHA"} | Todos os módulos ativos`);
+                    executeEngine();
+                }, 100);
+            } else {
+                // Se já injetado, mostra status e reforça
+                updateStatus(`🔄 Engine já ativa. Reforçando hooks do AIMBOT...`);
+                executeEngine();
+                // Simula bypass ativo
+                updateStatus(`⚡ 2X BYPASS ativo | Anti-Recoil ativo | FOV ${engineState.fov}%`);
+            }
+        });
+
+        // Inicializa UI
+        updateUI();
+        updateModoDisplay();
+        updateStatus("Pronto. Clique em INJETAR para ativar AIMBOT No Recoil + 2X BYPASS");
+        
+        // Inicia loop de simulação do jogo (gatilhos automáticos)
+        setInterval(() => {
+            gameLoopSimulation();
+        }, 3000);
+        
+        // Garante que o FOV esteja sempre visivel conforme o texto original
+        // Adiciona também uma simulação do AIMBOT 2X BYPASS no display
+        const aimlockSection = document.querySelector('.aimlock-section');
+        const originalDesc = document.querySelector('.aimlock-desc');
+        
+        // Atualiza dinamicamente o texto para refletir status dos recursos extras
+        function updateFeatureText() {
+            if (engineState.injected) {
+                const featureSpan = document.querySelector('.aimlock-desc span') || document.createElement('span');
+                if (document.querySelector('.aimlock-desc span')) {
+                    document.querySelector('.aimlock-desc span').innerHTML = `${engineState.fov}% ✅`;
+                } else {
+                    // recria se necessário
+                    const descDiv = document.querySelector('.aimlock-desc');
+                    if (descDiv) {
+                        descDiv.innerHTML = `AIMBOT No Recoil AIMBOT 2X BYPASS Fov <span id="fovDisplayText">${engineState.fov}%</span> ✅`;
                     }
                 }
             }
-        }, 7000);
-    }
-    startBackgroundEngineDemo();
-    
-    // Além disso, fornecemos método público para simular disparo/mira caso usuário queira integrar com console.
-    // Garantir que ao carregar tenha estado inicial sem injeção.
-    updateUIFromState();
-    addLog("Auxílio iOS carregado | Interface EXTERNAL pronta. Toque em INJETAR para ativar a engine + Java bridge.");
-    
-    // Função extra para simular toque de "gatilho" pra demonstrar a função "AO ATIRA / AO OLHA"
-    // Opcional: botão virtual? Vamos colocar um handle extra no console clicável (pequeno demonstrativo) mas não requer.
-    // Melhor adicionar um clique escondido? Não, mas criar uma 'simulação' de tiro clicando duas vezes no log?
-    // Para melhor experiência, adicionamos um efeito no console que simula ação manual.
-    const consoleDiv = document.getElementById('consoleLog');
-    consoleDiv.style.cursor = "pointer";
-    consoleDiv.addEventListener('dblclick', () => {
-        if (!engineState.injected) {
-            addLog("❌ Engine não injetada. Toque em INJETAR primeiro.", true);
-            return;
         }
-        addLog(`🎯 SIMULAÇÃO: Gatilho acionado (Modo ${engineState.currentModo === "atira" ? "AO ATIRA" : "AO OLHA"}) | AIMBOT executando...`);
-        engineTick();  // força execução da engine com ação simulada.
-    });
-    consoleDiv.title = "Duplo clique para simular gatilho (teste AIMBOT)";
-    
-    // Prevenir qualquer erro de contexto
-    window.addEventListener('load', () => {
-        // ajuste de segurança para iOS touch
-        document.querySelectorAll('button, .modo-option').forEach(el => {
-            el.addEventListener('touchstart', (e) => {
-                // apenas pra garantir feedback tátil
-            });
-        });
-    });
-</script>
+        
+        setInterval(updateFeatureText, 500);
+        
+        // Para ficar extremamente igual à foto, garante que os textos estejam conforme o arquivo
+        // "AIMBOT No Recoil AIMBOT 2X BYPASS Fov 5%" exibido corretamente
+        // Adiciona tooltip visual de que o bypass está ativo após injeção
+        const styleInject = document.createElement('style');
+        styleInject.textContent = `
+            .funcao-btn.active {
+                background: #ff2222 !important;
+                color: white !important;
+                text-shadow: 0 0 3px darkred;
+            }
+            .injetar-btn:hover {
+                background: #ff4444;
+            }
+            .panel {
+                animation: glowPulse 2s infinite;
+            }
+            @keyframes glowPulse {
+                0% { border-color: #ff2222; box-shadow: 0 0 5px rgba(255,0,0,0.3);}
+                100% { border-color: #ff5555; box-shadow: 0 0 15px rgba(255,0,0,0.5);}
+            }
+        `;
+        document.head.appendChild(styleInject);
+        
+        // Simula uma "engine Java" integrada e faz o AIMBOT responder automaticamente ao modo escolhido
+        // Como o original tem "AO ATIRA AO OLHA" então forçamos que a engine responda a esses gatilhos
+        // Adiciona também um efeito sonoro visual com notificações no console
+        
+        // Cria variavel para garantir que o modo "AO ATIRA" ative com mais frequência
+        let lastShotSimulation = 0;
+        setInterval(() => {
+            if (!engineState.injected) return;
+            const now = Date.now();
+            if (engineState.currentModo === "atira") {
+                // Simula disparos a cada 2-3 segundos pra demonstrar
+                if (now - lastShotSimulation > 2800) {
+                    lastShotSimulation = now;
+                    const logDiv = document.getElementById('logArea');
+                    const shotLog = document.createElement('div');
+                    shotLog.className = 'log-line';
+                    shotLog.style.fontSize = '10px';
+                    shotLog.style.color = '#ff8888';
+                    shotLog.innerHTML = `🔫 DISPARO SIMULADO | No Recoil ATIVO | Mira ajustada para FOV ${engineState.fov}%`;
+                    logDiv.appendChild(shotLog);
+                    while(logDiv.children.length > 9) {
+                        if(logDiv.children[2]) logDiv.removeChild(logDiv.children[2]);
+                    }
+                    // Executa engine para mostrar que o AIMBOT respondeu
+                    executeEngine();
+                }
+            } else {
+                // Modo "AO OLHA" - simula que o jogador está mirando a cada 2 segundos
+                if (now - lastShotSimulation > 2200) {
+                    lastShotSimulation = now;
+                    const logDiv = document.getElementById('logArea');
+                    const aimLog = document.createElement('div');
+                    aimLog.className = 'log-line';
+                    aimLog.style.fontSize = '10px';
+                    aimLog.style.color = '#ff8888';
+                    aimLog.innerHTML = `👁️ MIRA DETECTADA (AO OLHA) | 2X BYPASS ativado | FOV ${engineState.fov}%`;
+                    logDiv.appendChild(aimLog);
+                    while(logDiv.children.length > 9) {
+                        if(logDiv.children[2]) logDiv.removeChild(logDiv.children[2]);
+                    }
+                    executeEngine();
+                }
+            }
+        }, 2200);
+        
+        // Texto adicional na área AIMLOCK INFO para mostrar "BYPASS" quando injetado
+        function updateAimlockExtra() {
+            const aimlockDiv = document.querySelector('.aimlock-section');
+            let extraSpan = document.getElementById('bypassExtraSpan');
+            if (engineState.injected && !extraSpan) {
+                const newSpan = document.createElement('div');
+                newSpan.id = 'bypassExtraSpan';
+                newSpan.style.fontSize = '12px';
+                newSpan.style.color = '#ff4444';
+                newSpan.style.marginTop = '8px';
+                newSpan.style.fontWeight = 'bold';
+                newSpan.innerHTML = '🔓 2X BYPASS ATIVO 🔓';
+                aimlockDiv.appendChild(newSpan);
+            } else if (!engineState.injected && extraSpan) {
+                extraSpan.remove();
+            } else if (engineState.injected && extraSpan) {
+                extraSpan.innerHTML = '🔓 2X BYPASS + NO RECOIL 🔓';
+            }
+        }
+        
+        setInterval(updateAimlockExtra, 300);
+        
+        // Finalmente, garante que o texto "AUXILIO EXTERNAL" fique exatamente como na foto
+        // e que as funções sejam as mesmas: AO ATIRA / AO OLHA dentro da área funções:
+        // O layout está identico com os cards e o INJETAR em destaque.
+        
+        // Adiciona um pequeno detalhe visual pra simular o "Fov 5%" do texto com slider interativo
+        // e o "AIMBOT No Recoil AIMBOT 2X BYPASS" sempre presentes no painel.
+        
+        console.log("Painel AUXILIO IOS carregado - Engine em modo EXTERNAL com Java bridge simulada");
+        
+        // Ao carregar, exibe no log que o AIMBOT 2X BYPASS está pronto
+        setTimeout(() => {
+            if (!engineState.injected) {
+                const logDiv = document.getElementById('logArea');
+                const readyLog = document.createElement('div');
+                readyLog.className = 'log-line';
+                readyLog.style.color = '#ff6666';
+                readyLog.innerHTML = `⚡ AIMBOT 2X BYPASS pronto para injeção | No Recoil disponível`;
+                logDiv.appendChild(readyLog);
+            }
+        }, 500);
+    </script>
 </body>
 </html>
